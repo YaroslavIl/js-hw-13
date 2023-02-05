@@ -87,11 +87,11 @@ let createData = function() {
 };
 xhr.onload = createData;
 
-let input = document.querySelector('#search');
+// let input = document.querySelector('#search');
+// // let allName = document.querySelectorAll('.search');
 // let allName = document.querySelectorAll('.search');
-let allName = document.querySelectorAll('.search');
-let arr = Array.from(allName);
-console.log(name);
+// let arr = Array.from(allName);
+// console.log(name);
 
 
 
