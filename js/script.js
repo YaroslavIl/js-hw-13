@@ -4,6 +4,9 @@
 let container = document.querySelector('.container');
 let result;
 let counter = 0;
+let allName;
+let arr;
+let input = document.querySelector('#search');
 const xhr = new XMLHttpRequest();
 xhr.open('get', 'https://jsonplaceholder.typicode.com/users');
 xhr.responseType = 'json';
@@ -12,7 +15,7 @@ xhr.onreadystatechange = function () {
     // console.log(xhr.status);
     if (xhr.readyState == 4 && xhr.status == 200) {
         result = xhr.response;
-        console.log(result);
+        console.log(result[0].name);
     }
 }
 xhr.send();
@@ -84,14 +87,41 @@ let createData = function() {
             
         }
     });
+
+    
+    allName = document.querySelectorAll('ul .search');
+    console.log(allName);
+    arr = Array.from(allName);
+
+    input.oninput = function () {
+        let val = this.value;
+        if (val !== '') {
+            arr.forEach(function (item) {
+                let parent = item.parentNode
+                let appCase = item.innerText.toLowerCase()
+                if (appCase.search(val) == -1) {
+                    parent.parentNode.classList.add('hide');
+                }
+                else {
+                    parent.parentNode.classList.remove('hide');
+                }
+            })
+        }
+        else {
+            arr.forEach(function (item) {
+                let parent = item.parentNode;
+                parent.parentNode.classList.remove('hide');
+            })
+        }
+    }
 };
+
 xhr.onload = createData;
 
-// let input = document.querySelector('#search');
-// // let allName = document.querySelectorAll('.search');
-// let allName = document.querySelectorAll('.search');
-// let arr = Array.from(allName);
-// console.log(name);
+
+
+
+
 
 
 
